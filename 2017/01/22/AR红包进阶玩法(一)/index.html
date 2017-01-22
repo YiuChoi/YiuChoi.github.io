@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="android mysql," />
+  <meta name="keywords" content="QQ 红包," />
 
 
 
@@ -84,19 +84,18 @@
 
 
 
-<meta name="description" content="理论上讲，android不应该直接连接数据库的，但是处于业务需要，且自己局域网使用，不存在泄漏问题，所以就尝试了android直接连接mysql数据库首先，需要网络连接权限，这就不说了，然后添加mysql连接依赖包：1compile &apos;mysql:mysql-connector-java:5.1.18&apos;
-最后下面这段代码即可连接成功,记得在异步线程执行。1234567891011121314151">
+<meta name="description" content="最近支付宝QQ红包大战又开始了，前两天支付宝集福占据风头，这两天又换QQ抢风头了，相比支付宝集福还不知道能分几毛，QQ可是实打实的现金红包，每天每个QQ可领取一次8-188的现金红包，比支付宝爽快多了，不过，毕竟是AR红包，要去指定的地点领取，那么作为技术宅，怎么能任人摆布╭(╯^╰)╮。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="android直接连接mysql数据库">
-<meta property="og:url" content="http://caiyao.name/2016/02/04/android直接连接mysql数据库/index.html">
+<meta property="og:title" content="AR红包进阶玩法(一)">
+<meta property="og:url" content="http://caiyao.name/2017/01/22/AR红包进阶玩法(一)/index.html">
 <meta property="og:site_name" content="小木·年轮">
-<meta property="og:description" content="理论上讲，android不应该直接连接数据库的，但是处于业务需要，且自己局域网使用，不存在泄漏问题，所以就尝试了android直接连接mysql数据库首先，需要网络连接权限，这就不说了，然后添加mysql连接依赖包：1compile &apos;mysql:mysql-connector-java:5.1.18&apos;
-最后下面这段代码即可连接成功,记得在异步线程执行。1234567891011121314151">
-<meta property="og:updated_time" content="2016-02-04T03:01:18.000Z">
+<meta property="og:description" content="最近支付宝QQ红包大战又开始了，前两天支付宝集福占据风头，这两天又换QQ抢风头了，相比支付宝集福还不知道能分几毛，QQ可是实打实的现金红包，每天每个QQ可领取一次8-188的现金红包，比支付宝爽快多了，不过，毕竟是AR红包，要去指定的地点领取，那么作为技术宅，怎么能任人摆布╭(╯^╰)╮。">
+<meta property="og:image" content="http://wx2.sinaimg.cn/mw690/723b2af4gy1fbzr1mpzlgj209o0p741d.jpg">
+<meta property="og:updated_time" content="2017-01-22T14:57:21.464Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="android直接连接mysql数据库">
-<meta name="twitter:description" content="理论上讲，android不应该直接连接数据库的，但是处于业务需要，且自己局域网使用，不存在泄漏问题，所以就尝试了android直接连接mysql数据库首先，需要网络连接权限，这就不说了，然后添加mysql连接依赖包：1compile &apos;mysql:mysql-connector-java:5.1.18&apos;
-最后下面这段代码即可连接成功,记得在异步线程执行。1234567891011121314151">
+<meta name="twitter:title" content="AR红包进阶玩法(一)">
+<meta name="twitter:description" content="最近支付宝QQ红包大战又开始了，前两天支付宝集福占据风头，这两天又换QQ抢风头了，相比支付宝集福还不知道能分几毛，QQ可是实打实的现金红包，每天每个QQ可领取一次8-188的现金红包，比支付宝爽快多了，不过，毕竟是AR红包，要去指定的地点领取，那么作为技术宅，怎么能任人摆布╭(╯^╰)╮。">
+<meta name="twitter:image" content="http://wx2.sinaimg.cn/mw690/723b2af4gy1fbzr1mpzlgj209o0p741d.jpg">
 
 
 
@@ -124,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://caiyao.name/2016/02/04/android直接连接mysql数据库/"/>
+  <link rel="canonical" href="http://caiyao.name/2017/01/22/AR红包进阶玩法(一)/"/>
 
 
 
 
 
-  <title> android直接连接mysql数据库 | 小木·年轮 </title>
+  <title> AR红包进阶玩法(一) | 小木·年轮 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -322,7 +321,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://caiyao.name/2016/02/04/android直接连接mysql数据库/">
+  <link itemprop="mainEntityOfPage" href="http://caiyao.name/2017/01/22/AR红包进阶玩法(一)/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="蔡小木">
@@ -346,7 +345,7 @@
             
             
               
-                android直接连接mysql数据库
+                AR红包进阶玩法(一)
               
             
           </h1>
@@ -361,8 +360,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-02-04T10:49:15+08:00">
-                2016-02-04
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-22T21:29:22+08:00">
+                2017-01-22
               </time>
             
 
@@ -384,8 +383,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android心得/" itemprop="url" rel="index">
-                    <span itemprop="name">Android心得</span>
+                  <a href="/categories/玩机教程/" itemprop="url" rel="index">
+                    <span itemprop="name">玩机教程</span>
                   </a>
                 </span>
 
@@ -402,8 +401,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/02/04/android直接连接mysql数据库/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/04/android直接连接mysql数据库/" itemprop="commentCount"></span>
+                <a href="/2017/01/22/AR红包进阶玩法(一)/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/22/AR红包进阶玩法(一)/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -429,8 +428,33 @@
       
 
       
-        <p>理论上讲，android不应该直接连接数据库的，但是处于业务需要，且自己局域网使用，不存在泄漏问题，所以就尝试了android直接连接mysql数据库<br>首先，需要网络连接权限，这就不说了，然后添加mysql连接依赖包：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">compile <span class="string">'mysql:mysql-connector-java:5.1.18'</span></div></pre></td></tr></table></figure></p>
-<p>最后下面这段代码即可连接成功,记得在异步线程执行。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">connect</span><span class="params">()</span> </span>&#123;</div><div class="line">       Connection connection = <span class="keyword">null</span>;</div><div class="line">       <span class="keyword">try</span> &#123;</div><div class="line">           Class.forName(<span class="string">"com.mysql.jdbc.Driver"</span>).newInstance();</div><div class="line">           String url = <span class="string">"jdbc:mysql://192.168.1.1:3306/database_name"</span>;</div><div class="line">           connection = (Connection) DriverManager.getConnection(url, <span class="string">"username"</span>, <span class="string">"password"</span>);</div><div class="line">           Statement statement = (Statement) connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);</div><div class="line">           String sql = <span class="string">"select * from table_name"</span>;</div><div class="line">           ResultSet resultSet = statement.executeQuery(sql);</div><div class="line">           <span class="keyword">while</span> (resultSet.next()) &#123;</div><div class="line">               Log.i(<span class="string">"TAG"</span>, resultSet.getString(<span class="string">"content"</span>));</div><div class="line">           &#125;</div><div class="line">       &#125; <span class="keyword">catch</span> (ClassNotFoundException | SQLException | InstantiationException | IllegalAccessException e) &#123;</div><div class="line">           e.printStackTrace();</div><div class="line">       &#125; <span class="keyword">finally</span> &#123;</div><div class="line">           <span class="keyword">try</span> &#123;</div><div class="line">               <span class="keyword">if</span> (connection != <span class="keyword">null</span>) &#123;</div><div class="line">                   connection.close();</div><div class="line">               &#125;</div><div class="line">           &#125; <span class="keyword">catch</span> (SQLException e) &#123;</div><div class="line">               e.printStackTrace();</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+        <p>最近支付宝QQ红包大战又开始了，前两天支付宝集福占据风头，这两天又换QQ抢风头了，相比支付宝集福还不知道能分几毛，QQ可是实打实的现金红包，每天每个QQ可领取一次8-188的现金红包，比支付宝爽快多了，不过，毕竟是AR红包，要去指定的地点领取，那么作为技术宅，怎么能任人摆布╭(╯^╰)╮。<br><a id="more"></a></p>
+<h3 id="需要的前提条件"><a href="#需要的前提条件" class="headerlink" title="需要的前提条件"></a>需要的前提条件</h3><ul>
+<li>Android手机</li>
+<li>手机必须Root</li>
+<li>手机最好安装Xposed框架，没有也能玩，不过会有限制</li>
+</ul>
+<p><strong>以上条件不符合请关闭本页，先去满足以上条件</strong></p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ol>
+<li>大红包的位置</li>
+</ol>
+<p><img src="http://wx2.sinaimg.cn/mw690/723b2af4gy1fbzr1mpzlgj209o0p741d.jpg" alt=""></p>
+<ol>
+<li>安装一个伪装手机位置的软件，这里我们使用天下任我行</li>
+</ol>
+<p><a href="http://caiyao.name/releases/fake.apk">点击下载</a></p>
+<p>这个软件是收费的，不过非常好用，可以免费试用5小时，如果你有xposed就有下面两种方式破解：</p>
+<ul>
+<li>禁用软件SD卡权限，使用应用产量等修改手机信息，清除软件数据即可再次试用5小时。</li>
+<li>下载对话框取消Xposed模块，出现试用到期对话框，点击返回即可继续使用。</li>
+</ul>
+<p>以上方法任选一个。</p>
+<p>如果你没有xposed，可以选择禁用SD卡权限后，手动修改手机型号，清除任我行数据，获得再次试用。</p>
+<h3 id="去抢大红包"><a href="#去抢大红包" class="headerlink" title="去抢大红包"></a>去抢大红包</h3><ol>
+<li>在任我行软件里面搜索上面任意一个有大红包的地方，选定位置开始模拟，在任我行设置里面的隐藏自己选项中对QQ隐藏。</li>
+<li>结束QQ进程，重新打开QQ就会发现已经飞到了大红包的位置，等到12点，大红包出现即可领取，记住是金色的红包哟。</li>
+</ol>
+<p><a href="http://shang.qq.com/wpa/qunwpa?idkey=cb1680a5052a631a7ce40ca3063530d016c9fb2664eb4a74465b0398b9e696d9" target="_blank" rel="external">如果你有更多问题可以QQ群290873461讨论</a></p>
 
       
     </div>
@@ -480,7 +504,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/android-mysql/" rel="tag"># android mysql</a>
+            <a href="/tags/QQ-红包/" rel="tag"># QQ 红包</a>
           
         </div>
       
@@ -489,8 +513,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/20/RecyclerView使用小结/" rel="next" title="RecyclerView使用小结">
-                <i class="fa fa-chevron-left"></i> RecyclerView使用小结
+              <a href="/2016/12/16/斐讯k2刷不死Uboot和华硕固件教程/" rel="next" title="斐讯k2刷不死Uboot和华硕固件教程">
+                <i class="fa fa-chevron-left"></i> 斐讯k2刷不死Uboot和华硕固件教程
               </a>
             
           </div>
@@ -498,10 +522,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/02/Android-6-0运行时权限小结/" rel="prev" title="Android 6.0运行时权限小结">
-                Android 6.0运行时权限小结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -516,10 +536,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/02/04/android直接连接mysql数据库/"
-     data-title="android直接连接mysql数据库"
+        <div class="ds-share flat" data-thread-key="2017/01/22/AR红包进阶玩法(一)/"
+     data-title="AR红包进阶玩法(一)"
      data-content=""
-     data-url="http://caiyao.name/2016/02/04/android直接连接mysql数据库/">
+     data-url="http://caiyao.name/2017/01/22/AR红包进阶玩法(一)/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -546,8 +566,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/02/04/android直接连接mysql数据库/"
-           data-title="android直接连接mysql数据库" data-url="http://caiyao.name/2016/02/04/android直接连接mysql数据库/">
+      <div class="ds-thread" data-thread-key="2017/01/22/AR红包进阶玩法(一)/"
+           data-title="AR红包进阶玩法(一)" data-url="http://caiyao.name/2017/01/22/AR红包进阶玩法(一)/">
       </div>
     
   </div>
@@ -571,8 +591,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/logo.jpg"
@@ -648,6 +677,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#需要的前提条件"><span class="nav-number">1.</span> <span class="nav-text">需要的前提条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#准备工作"><span class="nav-number">2.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#去抢大红包"><span class="nav-number">3.</span> <span class="nav-text">去抢大红包</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
