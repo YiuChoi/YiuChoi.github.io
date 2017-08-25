@@ -1,20 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 
 
 
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
 
 
 
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
 
 
 
@@ -65,7 +75,7 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Hexo, NexT" />
@@ -77,7 +87,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.jpg?v=5.1.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/images/icon.jpg?v=5.1.2" />
 
 
 
@@ -91,7 +101,7 @@
 <meta property="og:site_name" content="小木·年轮">
 <meta property="og:description" content="微阅一个小而美的阅读客户端，包含微信精选，IT之家(去广告),果壳热门，知乎日报，和视频推荐栏目，更有每天更换主题的功能，每天有期待，点击下载1.3.8版。更新日志. 运动修改器支持以一定的倍率修改微信运动、QQ健康、悦动圈、乐动力、三星健康、支付宝、华为健康等的运动步数，支持自定义倍率，自定义开关，同时不影响其他微信QQ其他功能的正常使用比如微信摇一摇。点击下载2.0.4版(需要Xposed框架">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-25T07:04:17.846Z">
+<meta property="og:updated_time" content="2017-08-25T07:08:02.910Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="发布应用">
 <meta name="twitter:description" content="微阅一个小而美的阅读客户端，包含微信精选，IT之家(去广告),果壳热门，知乎日报，和视频推荐栏目，更有每天更换主题的功能，每天有期待，点击下载1.3.8版。更新日志. 运动修改器支持以一定的倍率修改微信运动、QQ健康、悦动圈、乐动力、三星健康、支付宝、华为健康等的运动步数，支持自定义倍率，自定义开关，同时不影响其他微信QQ其他功能的正常使用比如微信摇一摇。点击下载2.0.4版(需要Xposed框架">
@@ -102,12 +112,13 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
-    sidebar: {"position":"left","display":"post"},
+    scheme: 'Gemini',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
+    tabs: true,
     motion: true,
     duoshuo: {
-      userId: '1799824',
+      userId: '0',
       author: '博主'
     },
     algolia: {
@@ -128,18 +139,10 @@
 
 
 
-  <title>
+  <title>发布应用 | 小木·年轮</title>
   
 
-  
-    发布应用 | 小木·年轮
-  
-</title>
-</head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
-
-  
 
 
 
@@ -155,14 +158,7 @@
 
 
 
-  <script type="text/javascript">
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "//tajs.qq.com/stats?sId=55786598";
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
-  </script>
+
 
 
 
@@ -175,36 +171,42 @@
 
 
 
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
   
   
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-meta ">
-  
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
 
-  <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <span class="site-title">小木·年轮</span>
-      <span class="logo-line-after"><i></i></span>
-    </a>
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小木·年轮</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">蔡小木的博客</p>
+      
   </div>
-    
-      <p class="site-subtitle">蔡小木的博客</p>
-    
-</div>
 
-<div class="site-nav-toggle">
-  <button>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-    <span class="btn-bar"></span>
-  </button>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
 <nav class="site-nav">
@@ -241,7 +243,7 @@
         <li class="menu-item menu-item-resume">
           <a href="/resume" rel="section">
             
-            简历
+            menu.resume
           </a>
         </li>
       
@@ -249,7 +251,7 @@
         <li class="menu-item menu-item-releases">
           <a href="/releases" rel="section">
             
-            发布
+            menu.releases
           </a>
         </li>
       
@@ -265,7 +267,7 @@
         <li class="menu-item menu-item-sitemap">
           <a href="/sitemap.xml" rel="section">
             
-            Sitemap
+            站点地图
           </a>
         </li>
       
@@ -317,37 +319,49 @@
             
 
   <div id="posts" class="posts-expand">
-  <header class="post-header">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
 
-	<h2 class="post-title" itemprop="name headline">发布应用</h2>
+	<h1 class="post-title" itemprop="name headline">发布应用</h1>
 
 
 
 </header>
 
-    
-    
-      <h2 id="微阅"><a href="#微阅" class="headerlink" title="微阅"></a>微阅</h2><p>一个小而美的阅读客户端，包含微信精选，IT之家(去广告),果壳热门，知乎日报，和视频推荐栏目，更有每天更换主题的功能，每天有期待，<a href="http://caiyao.name/releases/microreader_1.3.8.apk">点击下载1.3.8版</a>。<br><a href="http://caiyao.name/releases/microreader.html">更新日志</a>.</p>
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h2 id="微阅"><a href="#微阅" class="headerlink" title="微阅"></a>微阅</h2><p>一个小而美的阅读客户端，包含微信精选，IT之家(去广告),果壳热门，知乎日报，和视频推荐栏目，更有每天更换主题的功能，每天有期待，<a href="http://caiyao.name/releases/microreader_1.3.8.apk">点击下载1.3.8版</a>。<br><a href="http://caiyao.name/releases/microreader.html">更新日志</a>.</p>
 <h2 id="运动修改器"><a href="#运动修改器" class="headerlink" title="运动修改器"></a>运动修改器</h2><p>支持以一定的倍率修改微信运动、QQ健康、悦动圈、乐动力、三星健康、支付宝、华为健康等的运动步数，支持自定义倍率，自定义开关，同时不影响其他微信QQ其他功能的正常使用比如微信摇一摇。<a href="http://caiyao.name/releases/sporteditor_2.0.4.apk">点击下载2.0.4版</a>(需要Xposed框架支持,如果你此前没有听说过Xposed,请不要尝试)。<br>声明：本程序仅供测试，不承担法律责任，所有责任由使用者自行承担。<br>注意：关于腾讯运动qq无效果的问题，模块负责修改数据，然后qq上传到腾讯服务器，可能被服务器检测到异常就会停止上传，建议倍率调低，使用过程中尽量不要打开qq健康，最好晚上再打开。</p>
 <p><a href="http://caiyao.name/releases/sporteditor.html">更新日志</a>.<a href="https://github.com/YiuChoi/SportEditor" target="_blank" rel="external">Github源码</a></p>
 <h2 id="模拟位置"><a href="#模拟位置" class="headerlink" title="模拟位置"></a>模拟位置</h2><p>支持全局模拟位置，世界在你手中，勾搭外地好友，朋友圈装X利器。<a href="http://caiyao.name/releases/fakegps_1.2.1.apk">点击下载1.2.2</a>(需要Xposed框架支持,如果你此前没有听说过Xposed,请不要尝试)。<br>目前已测试微信QQ完美，高德地图，Google地图，陌陌，易信可以，QQ空间无效，其他未测试。<br><strong>注意:使用时需要打开开发者选项中的模拟位置。</strong><br>声明：本程序仅供测试，不承担法律责任，所有责任由使用者自行承担。</p>
 <p><a href="http://caiyao.name/releases/fakegps.html">更新日志</a></p>
 <p><a href="http://shang.qq.com/wpa/qunwpa?idkey=cb1680a5052a631a7ce40ca3063530d016c9fb2664eb4a74465b0398b9e696d9" target="_blank" rel="external">QQ群290873461</a></p>
 
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
     
   </div>
 
-          
+
           </div>
           
 
 
           
   <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="releases/index.html"
-           data-title="发布应用" data-url="http://caiyao.name/releases/index.html">
-      </div>
     
   </div>
 
@@ -365,22 +379,34 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
+    
     <div class="sidebar-inner">
 
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/logo.jpg"
+               src="/images/avatar.gif"
                alt="蔡小木" />
           <p class="site-author-name" itemprop="name">蔡小木</p>
-          <p class="site-description motion-element" itemprop="description">小木·年轮</p>
+           
+              <p class="site-description motion-element" itemprop="description">小木·年轮</p>
+          
         </div>
         <nav class="site-state motion-element">
-        
+
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
@@ -391,8 +417,10 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-categories">
-              <a href="/categories">
+              <a href="/categories/index.html">
                 <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -400,11 +428,13 @@
           
 
           
+            
+            
             <div class="site-state-item site-state-tags">
-              
+              <a href="/tags/index.html">
                 <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
-              
+              </a>
             </div>
           
 
@@ -413,26 +443,6 @@
         
 
         <div class="links-of-author motion-element">
-          
-            
-              <span class="links-of-author-item">
-                <a href="https://github.com/YiuChoi" target="_blank" title="GitHub">
-                  
-                    <i class="fa fa-fw fa-github"></i>
-                  
-                  GitHub
-                </a>
-              </span>
-            
-              <span class="links-of-author-item">
-                <a href="http://weibo.com/caiyao2011" target="_blank" title="Weibo">
-                  
-                    <i class="fa fa-fw fa-weibo"></i>
-                  
-                  Weibo
-                </a>
-              </span>
-            
           
         </div>
 
@@ -448,6 +458,24 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#微阅"><span class="nav-number">1.</span> <span class="nav-text">微阅</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运动修改器"><span class="nav-number">2.</span> <span class="nav-text">运动修改器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟位置"><span class="nav-number">3.</span> <span class="nav-text">模拟位置</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
 
     </div>
   </aside>
@@ -461,7 +489,7 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy;  2016 - 
+  &copy; 
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
@@ -477,7 +505,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+    NexT.Gemini
   </a>
 </div>
 
@@ -488,9 +516,13 @@
       </div>
     </footer>
 
-    <div class="back-to-top">
-      <i class="fa fa-arrow-up"></i>
-    </div>
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
   </div>
 
   
@@ -510,6 +542,14 @@
 
 
   
+
+
+
+
+
+
+
+
 
 
 
@@ -536,62 +576,56 @@
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
 
 
 
   
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+  
 
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
 
 
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"caiyaoname"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
 
   
-    
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
+
+
+
+
+	
+
+
+
+
+
   
 
 
 
 
 
-
+  
 
 
 
@@ -599,7 +633,10 @@
 
 
   
-  
+
+
+
+
 
   
 
@@ -609,6 +646,9 @@
 
   
 
+  
+
+  
 
 </body>
 </html>
