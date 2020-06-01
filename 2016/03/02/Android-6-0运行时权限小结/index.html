@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="小木·年轮">
+  <meta name="author" content="蔡小木">
+  <meta name="keywords" content="">
+  <title>Android 6.0运行时权限小结 - 小木·年轮</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>小木·年轮</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/releases/">
+                <i class="iconfont icon-archive-fill"></i>
+                发布
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2016-03-02 20:18">
+      2016年3月2日 晚上
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <p>Android 6.0之后需要动态申请权限</p>
+<a id="more"></a>
+
+<h2 id="Android6-0权限介绍"><a href="#Android6-0权限介绍" class="headerlink" title="Android6.0权限介绍"></a>Android6.0权限介绍</h2><p>Google在Android6.0系统之后对权限进行了分类:</p>
+<ul>
+<li><p>正常(Normal Protection)权限:</p>
+<pre><code class="hljs java">ACCESS_LOCATION_EXTRA_COMMANDS
+ACCESS_NETWORK_STATE
+ACCESS_NOTIFICATION_POLICY
+ACCESS_WIFI_STATE
+BLUETOOTH
+BLUETOOTH_ADMIN
+BROADCAST_STICKY
+CHANGE_NETWORK_STATE
+CHANGE_WIFI_MULTICAST_STATE
+CHANGE_WIFI_STATE
+DISABLE_KEYGUARD
+EXPAND_STATUS_BAR
+GET_PACKAGE_SIZE
+INTERNET
+KILL_BACKGROUND_PROCESSES
+MODIFY_AUDIO_SETTINGS
+NFC
+READ_SYNC_SETTINGS
+READ_SYNC_STATS
+RECEIVE_BOOT_COMPLETED
+REORDER_TASKS
+REQUEST_INSTALL_PACKAGES
+SET_TIME_ZONE
+SET_WALLPAPER
+SET_WALLPAPER_HINTS
+TRANSMIT_IR
+USE_FINGERPRINT
+VIBRATE
+WAKE_LOCK
+WRITE_SYNC_SETTINGS
+SET_ALARM
+INSTALL_SHORTCUT
+UNINSTALL_SHORTCUT</code></pre></li>
+<li><p>危险(Dangerous)权限</p>
+<pre><code class="hljs java">CALENDAR
+CAMERA
+CONTACTS
+LOCATION
+MICROPHONE
+PHONE
+SENSORS
+SMS
+STORAGE</code></pre>
+<p>权限分组及其具体权限如下:<br><img src="http://ww4.sinaimg.cn/large/6a195423jw1ezwpc11cs0j20hr0majwm.jpg" srcset="/img/loading.gif" alt="此处输入图片的描述"></p>
+</li>
+<li><p>特殊(Particular)权限</p>
+<pre><code class="hljs java">SYSTEM_ALERT_WINDOW，设置悬浮窗
+WRITE_SETTINGS 修改系统设置</code></pre></li>
+<li><p>其他权限（一般很少用到）</p>
+</li>
+</ul>
+<p>Android6.0在之前AndroidManifest.xml声明权限的基础上对危险权限和特殊权限新增了运行时权限，需要动态获取权限。</p>
+<h2 id="运行时权限处理"><a href="#运行时权限处理" class="headerlink" title="运行时权限处理"></a>运行时权限处理</h2><h3 id="特殊权限"><a href="#特殊权限" class="headerlink" title="特殊权限"></a>特殊权限</h3><p>特殊权限的做法是使用startResultActivity启动授权界面来完成。</p>
+<h4 id="请求SYSTEM-ALERT-WINDOW权限"><a href="#请求SYSTEM-ALERT-WINDOW权限" class="headerlink" title="请求SYSTEM_ALERT_WINDOW权限"></a>请求SYSTEM_ALERT_WINDOW权限</h4><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> REQUEST_CODE = <span class="hljs-number">1</span>;
+<span class="hljs-function"><span class="hljs-keyword">private</span>  <span class="hljs-keyword">void</span> <span class="hljs-title">requestAlertWindowPermission</span><span class="hljs-params">()</span> </span>&#123;
+    Intent intent = <span class="hljs-keyword">new</span> Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
+    intent.setData(Uri.parse(<span class="hljs-string">"package:"</span> + getPackageName()));
+    startActivityForResult(intent, REQUEST_CODE);
+&#125;
+
+<span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onActivityResult</span><span class="hljs-params">(<span class="hljs-keyword">int</span> requestCode, <span class="hljs-keyword">int</span> resultCode, Intent data)</span> </span>&#123;
+    <span class="hljs-keyword">super</span>.onActivityResult(requestCode, resultCode, data);
+    <span class="hljs-keyword">if</span> (requestCode == REQUEST_CODE) &#123;
+        <span class="hljs-keyword">if</span> (Settings.canDrawOverlays(<span class="hljs-keyword">this</span>)) &#123;
+          Log.i(LOGTAG, <span class="hljs-string">"onActivityResult granted"</span>);
+        &#125;
+    &#125;
+&#125;</code></pre>
+<p>上述代码需要注意的是</p>
+<ul>
+<li><p>使用Action Settings.ACTION_MANAGE_OVERLAY_PERMISSION启动隐式Intent</p>
+</li>
+<li><p>使用”package:” + getPackageName()携带App的包名信息</p>
+</li>
+<li><p>使用Settings.canDrawOverlays方法判断授权结果</p>
+<h4 id="请求WRITE-SETTINGS"><a href="#请求WRITE-SETTINGS" class="headerlink" title="请求WRITE_SETTINGS"></a>请求WRITE_SETTINGS</h4><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> REQUEST_CODE_WRITE_SETTINGS = <span class="hljs-number">2</span>;
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">requestWriteSettings</span><span class="hljs-params">()</span> </span>&#123;
+    Intent intent = <span class="hljs-keyword">new</span> Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+    intent.setData(Uri.parse(<span class="hljs-string">"package:"</span> + getPackageName()));
+    startActivityForResult(intent, REQUEST_CODE_WRITE_SETTINGS );
+&#125;
+<span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onActivityResult</span><span class="hljs-params">(<span class="hljs-keyword">int</span> requestCode, <span class="hljs-keyword">int</span> resultCode, Intent data)</span> </span>&#123;
+    <span class="hljs-keyword">super</span>.onActivityResult(requestCode, resultCode, data);
+    <span class="hljs-keyword">if</span> (requestCode == REQUEST_CODE_WRITE_SETTINGS) &#123;
+        <span class="hljs-keyword">if</span> (Settings.System.canWrite(<span class="hljs-keyword">this</span>)) &#123;
+            Log.i(LOGTAG, <span class="hljs-string">"onActivityResult write settings granted"</span> );
+        &#125;
+    &#125;
+&#125;</code></pre>
+<p>上述代码需要注意的是</p>
+</li>
+<li><p>使用Action Settings.ACTION_MANAGE_WRITE_SETTINGS启动隐式Intent</p>
+</li>
+<li><p>使用”package:” + getPackageName()携带App的包名信息</p>
+</li>
+<li><p>使用Settings.canDrawOverlays方法判断授权结果</p>
+<h3 id="危险权限"><a href="#危险权限" class="headerlink" title="危险权限"></a>危险权限</h3><p>我们需要使用以下API：</p>
+</li>
+<li><p>int checkSelfPermission(String permission) 用来检测应用是否已经具有权限</p>
+</li>
+<li><p>void requestPermissions(String[] permissions, int requestCode) 进行请求单个或多个权限</p>
+</li>
+<li><p>void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) 用户对请求作出响应后的回调<br>以请求READ_EXTERNAL_STORAGE权限为例:</p>
+<pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> READ_EXTERNAL_STORAGE_REQUEST_CODE = <span class="hljs-number">1</span>;
+
+<span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View v)</span> </span>&#123;
+    <span class="hljs-keyword">if</span> (ContextCompat.checkSelfPermission(MainActivity.<span class="hljs-keyword">this</span>, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) &#123;
+      ActivityCompat.requestPermissions(MainActivity.<span class="hljs-keyword">this</span>, <span class="hljs-keyword">new</span> String[]&#123;Manifest.permission.READ_EXTERNAL_STORAGE&#125;,    READ_EXTERNAL_STORAGE_REQUEST_CODE);
+   &#125;
+&#125;
+
+<span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onRequestPermissionsResult</span><span class="hljs-params">(<span class="hljs-keyword">int</span> requestCode, String[] permissions, <span class="hljs-keyword">int</span>[] grantResults)</span> </span>&#123;
+    <span class="hljs-keyword">super</span>.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    <span class="hljs-keyword">if</span> (requestCode == READ_EXTERNAL_STORAGE_REQUEST_CODE)&#123;
+       <span class="hljs-keyword">if</span> (grantResults[<span class="hljs-number">0</span>] == PackageManager.PERMISSION_GRANTED)&#123;
+        Intent intent = <span class="hljs-keyword">new</span> Intent(Intent.ACTION_PICK, <span class="hljs-keyword">null</span>);
+        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, IMAGE_TYPE);
+        startActivityForResult(intent, RESULT_IMAGE);
+        &#125;<span class="hljs-keyword">else</span>&#123;
+            Snackbar.make(recyclerView,<span class="hljs-string">"没有权限臣妾做不到呀"</span>,Snackbar.LENGTH_INDEFINITE).setAction(<span class="hljs-string">"再次获取权限"</span>, <span class="hljs-keyword">new</span> View.OnClickListener() &#123;
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onClick</span><span class="hljs-params">(View v)</span> </span>&#123;
+            ActivityCompat.requestPermissions(MainActivity.<span class="hljs-keyword">this</span>, <span class="hljs-keyword">new</span> String[]&#123;Manifest.permission.READ_EXTERNAL_STORAGE&#125;, READ_EXTERNAL_STORAGE_REQUEST_CODE);
+               &#125;
+          &#125;);
+      &#125;
+   &#125;
+&#125;</code></pre>
+<p>请求权限后，系统会弹出请求权限的Dialog<br><img src="http://7xjq5l.com1.z0.glb.clouddn.com/18501-06bc037ab77c9c62.png" srcset="/img/loading.gif" alt="此处输入图片的描述"><br>当用户选择允许或拒绝，我们就可以在onRequestPermissionsResult方法中进行响应的处理，如果用户拒绝，应用再次申请权限将会出现不在询问的选项：<br><img src="http://ww1.sinaimg.cn/large/6a195423jw1ezwtz1ljjgj20u01hcad8.jpg" srcset="/img/loading.gif" alt="此处输入图片的描述"><br>当用户勾选了”不再询问“拒绝后，应用的这个权限就无法使用了。<br>不过，你还有一丝希望，那就是再出现上述的对话框之前做一些说明信息，比如你使用这个权限的目的（一定要坦白）。</p>
+</li>
+</ul>
+<p>shouldShowRequestPermissionRationale这个API可以帮我们判断接下来的对话框是否包含”不再询问“选择框。因此，一个标准的申请权限流程如下:</p>
+<pre><code class="hljs java"><span class="hljs-keyword">if</span> (!(checkSelfPermission(Manifest.permission.READ_CONTACTS) == PackageManager.PERMISSION_GRANTED)) &#123;
+  <span class="hljs-keyword">if</span> (shouldShowRequestPermissionRationale(Manifest.permission.READ_CONTACTS)) &#123;
+      Toast.makeText(<span class="hljs-keyword">this</span>, <span class="hljs-string">"Please grant the permission this time"</span>, Toast.LENGTH_LONG).show();
+    &#125;
+    requestReadContactsPermission();
+&#125; <span class="hljs-keyword">else</span> &#123;
+  Log.i(LOGTAG, <span class="hljs-string">"onClick granted"</span>);
+&#125;</code></pre>
+<h4 id="批量申请权限"><a href="#批量申请权限" class="headerlink" title="批量申请权限"></a>批量申请权限</h4><p>只需要字符串数组放置多个权限即可：</p>
+<pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> REQUEST_CODE = <span class="hljs-number">1</span>;
+<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">requestMultiplePermissions</span><span class="hljs-params">()</span> </span>&#123;
+    String[] permissions = &#123;Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE&#125;;
+    requestPermissions(permissions, REQUEST_CODE);
+&#125;</code></pre>
+<p><img src="http://ww2.sinaimg.cn/large/6a195423jw1ezxulzbeu2j20iq0ggt9y.jpg" srcset="/img/loading.gif" alt="此处输入图片的描述"></p>
+<h4 id="权限很多呢"><a href="#权限很多呢" class="headerlink" title="权限很多呢"></a>权限很多呢</h4><p>前面权限介绍已经提到了权限分组，举一个例子，如果你的应用授权了读取联系人的权限，那么你的应用也是被赋予了写入联系人的权限。因为读取联系人和写入联系人这两个权限都属于联系人权限分组，所以一旦组内某个权限被允许，该组的其他权限也是被允许的。</p>
+<h3 id="Fragment中运行时权限的特殊处理"><a href="#Fragment中运行时权限的特殊处理" class="headerlink" title="Fragment中运行时权限的特殊处理"></a>Fragment中运行时权限的特殊处理</h3><ul>
+<li>在Fragment中申请权限，不要使用ActivityCompat.requestPermissions, 直接使用Fragment的requestPermissions方法，否则会回调到Activity的onRequestPermissionsResult</li>
+<li>如果在Fragment中嵌套Fragment，在子Fragment中使用requestPermissions方法，onRequestPermissionsResult不会回调回来，建议使用getParentFragment().requestPermissions方法，<br>这个方法会回调到父Fragment中的onRequestPermissionsResult，加入以下代码可以把回调透传到子Fragment<pre><code class="hljs java"><span class="hljs-meta">@Override</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onRequestPermissionsResult</span><span class="hljs-params">(<span class="hljs-keyword">int</span> requestCode, String[] permissions, <span class="hljs-keyword">int</span>[] grantResults)</span> </span>&#123;
+    <span class="hljs-keyword">super</span>.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    List&lt;Fragment&gt; fragments = getChildFragmentManager().getFragments();
+    <span class="hljs-keyword">if</span> (fragments != <span class="hljs-keyword">null</span>) &#123;
+        <span class="hljs-keyword">for</span> (Fragment fragment : fragments) &#123;
+            <span class="hljs-keyword">if</span> (fragment != <span class="hljs-keyword">null</span>) &#123;
+                fragment.onRequestPermissionsResult(requestCode,permissions,grantResults);
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3>即使支持了运行时权限，也要在Manifest声明，因为市场应用会根据这个信息和硬件设备进行匹配，决定你的应用是否在该设备上显示。</li>
+</ul>
+<h2 id="相关开源项目"><a href="#相关开源项目" class="headerlink" title="相关开源项目"></a>相关开源项目</h2><ul>
+<li><a href="https://github.com/hotchemi/PermissionsDispatcher" target="_blank" rel="noopener">PermissionsDispatcher</a><br>使用标注的方式，动态生成类处理运行时权限，目前还不支持嵌套Fragment。</li>
+<li><a href="https://github.com/tbruyelle/RxPermissions" target="_blank" rel="noopener">RxPermissions</a><br>基于RxJava的运行时权限检测框架</li>
+<li><a href="https://github.com/anthonycr/Grant" target="_blank" rel="noopener">Grant</a><br>简化运行时权限的处理，比较灵活</li>
+<li><a href="https://github.com/googlesamples/android-RuntimePermissions" target="_blank" rel="noopener">android-RuntimePermissions</a><br>Google官方的例子</li>
+</ul>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Android%E5%BF%83%E5%BE%97/">Android心得</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Android%E8%BF%90%E8%A1%8C%E6%97%B6%E6%9D%83%E9%99%90/">Android运行时权限</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2016/08/17/linux%E4%BD%BF%E7%94%A8sqlcipher%E8%A7%A3%E5%AF%86sqlite/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">linux使用sqlcipher解密sqlite</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2016/02/04/android%E7%9B%B4%E6%8E%A5%E8%BF%9E%E6%8E%A5mysql%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                        <span class="hidden-mobile">android直接连接mysql数据库</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDY1NC83MjA5">
+    <script type="text/javascript">
+      function loadLivere() {
+        addScript('https://cdn-city.livere.com/js/embed.dist.js');
+      }
+      createObserver(loadLivere, 'lv-container');
+    </script>
+    <noscript>为正常使用来必力评论功能请允许 JavaScript 运行</noscript>
+  </div>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+      <!-- cnzz Analytics Icon -->
+      <span id="cnzz_stat_icon_1258791095" style="display: none"></span>
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "Android 6.0运行时权限小结&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?857ef9b38c7e9ea46c76ecbb86cbf6c8";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <!-- cnzz Analytics -->
+    <script defer src="//s4.cnzz.com/z_stat.php?id=1258791095&show=pic"
+            type="text/javascript"></script>
+  
+
+
+
+
+
+</body>
+</html>

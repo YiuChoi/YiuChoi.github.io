@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="小木·年轮">
+  <meta name="author" content="蔡小木">
+  <meta name="keywords" content="">
+  <title>斐讯k2刷不死Uboot和华硕固件教程 - 小木·年轮</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>小木·年轮</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/releases/">
+                <i class="iconfont icon-archive-fill"></i>
+                发布
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2016-12-16 12:41">
+      2016年12月16日 下午
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      973 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      11
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <article class="markdown-body">
+              <p>斐讯k2凭借免费的旗号一直占据着路由器销量榜首，而且可以刷华硕固件，自带openvpn和ss等代理（特殊用途你懂得），在下也禁不住诱惑买了个玩玩，在此分享一下刷机教程给大家玩玩。</p>
+<a id="more"></a>
+
+<h3 id="购买途径"><a href="#购买途径" class="headerlink" title="购买途径"></a>购买途径</h3><p>大家都知道斐讯k2需要先支付399，路由器买回来激活k码得399元理财产品，一个月后可提现，很多人都心慌慌，怕斐讯卷钱跑了不敢买，这里推荐一个靠谱途径，那就是京东，京东自营也有斐讯k2，而且可以用白条支付，30天免息，刚好和斐讯的理财产品取现时间相同，咱们在京东上买就相当于多了一道保险，在下也是走的这个渠道，昨天刚下车。</p>
+<p><a href="http://union.click.jd.com/jdc?e=&p=AyIHZR5bEgAWBVMfWyUBFQdRElsUMlZYDUUEJVtXQhQQRQtaV1MJBABAHUBZCQVYEgIWDlUaRExHTlplTBNzRnFwL1g4Z3wWThBpC2ZaSwcja1cZMhM3VRpaFAIRB1QaUiUyc3VlTTUVAxMGVBpaHAAUN1ESWRwAGwZcHGsVBxsHXB5TFgUSBF0caxcCIgdRE10cARIOVwdTEwUWA1wraw%3D%3D&t=W1dCFBBFC1pXUwkEAEAdQFkJBVgSAhYOVRpETEdOWg%3D%3D" target="_blank" rel="noopener">直达京东链接</a></p>
+<h3 id="支持的版本"><a href="#支持的版本" class="headerlink" title="支持的版本"></a>支持的版本</h3><p>V22.3.15.128<br>V22.3.15.232<br>V22.3.17.148<br>V22.4.2.8<br>V22.4.2.9<br>斐讯9月18号的V22.4.5.39版本固件封堵了这种方法，配置文件和MAC一一对应<br>V22.4.5.39版本需要降级到测试版V22.4.2.8或者V22.4.2.9</p>
+<p>V22.4.5.42 降级就可以了。</p>
+<p>(官网9月28日已经悄悄删除，备份链接: <a href="http://code.taobao.org/svn/hopol-bak/K2/phicomm/K2/" target="_blank" rel="noopener">http://code.taobao.org/svn/hopol-bak/K2/phicomm/K2/</a> )</p>
+<p>如果是V21.4.6.12版本请下载新版手动升级，斐讯官方固件下载地址：<br><a href="http://file.soho.phicomm.com.cn/upload/k2/k2/" target="_blank" rel="noopener">http://file.soho.phicomm.com.cn/upload/k2/k2/</a></p>
+<h3 id="刷入breed和ssh"><a href="#刷入breed和ssh" class="headerlink" title="刷入breed和ssh"></a>刷入breed和ssh</h3><ol>
+<li><p>点击下载下面的文件<br><a href="http://tianbao.sf.net/b/" target="_blank" rel="noopener">tianbaoha_breed_ssh.dat</a><br>备份链接 <a href="http://code.taobao.org/svn/hopol-bak/K2/tianbaoha_breed_ssh.dat" target="_blank" rel="noopener">http://code.taobao.org/svn/hopol-bak/K2/tianbaoha_breed_ssh.dat</a> 【右键另存为】</p>
+</li>
+<li><p>登陆路由器<br>（默认 p.to 或者 phicomm.me 或者 192.168.2.1 ）</p>
+</li>
+<li><p>进入： 高级设置—-系统设置—-备份恢复—-浏览—–选择下载的tianbaoha_breed_ssh.dat—-点击恢复备份—-等待进度条完成(大约需要2分钟)。<br><img src="http://ww2.sinaimg.cn/large/723b2af4gw1fasjwdxroqj208c05gaad.jpg" srcset="/img/loading.gif" alt=""><br><img src="http://ww1.sinaimg.cn/large/723b2af4gw1fasjx2w28gj208c04daa3.jpg" srcset="/img/loading.gif" alt=""></p>
+</li>
+<li><p>重启以后使用新的管理密码：tianbaoha 登陆，如果登陆成功就说明breed和ssh刷好了。<br><img src="http://ww4.sinaimg.cn/large/723b2af4jw1fasjxl4vo9j208c05ijrc.jpg" srcset="/img/loading.gif" alt=""></p>
+</li>
+<li><p>进入 ：高级设置—-系统设置—-手动升级—-按图所示 点击下载备份EEPROM<br><img src="http://ww3.sinaimg.cn/large/723b2af4jw1fasjxvurgqj208c059mxe.jpg" srcset="/img/loading.gif" alt=""></p>
+</li>
+</ol>
+<p>如果继续使用斐讯固件自己改个密码就行了，如果想刷第三方固件就：<br>点击 浏览—–选择需要刷入的固件—-点击升级即可。<br>在下使用的是这个华硕固件：<a href="http://www.right.com.cn/forum/thread-161324-1-1.html" target="_blank" rel="noopener">http://www.right.com.cn/forum/thread-161324-1-1.html</a></p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
+<li><p>默认开启了telnet检测开关，使用斐讯固件的话恢复出厂或升级新版telnet也不会关闭。</p>
+</li>
+<li><p>第三方固件的管理地址 因固件而异，比如hiyboy编译的华硕padavan是192.168.123.1，可以根据获取到的IP判断。<br>刷了不同版本的固件或者第三方固件时，清除一下浏览器缓存文件，推荐使用Chromium内核的或者Firefox浏览器。</p>
+</li>
+<li><p>路由的指示灯是由固件控制的，有的第三方固件没有适配造成显示不正常（比如红灯长亮），不必惊慌，能正常使用固件，没有任何其他副作用，强迫症除外。</p>
+</li>
+<li><p>需要可用空间大于170KB，如果你以前装软件装满了请恢复出厂设置。</p>
+</li>
+<li><p>支持上传刷入默认50000分区的固件(比如潘多拉、华硕padavan)，上传官网下载的新版固件不会覆盖breed，会保留当前版本配置。<br>如果你上传了错误的固件或者压缩包会卡在breed界面，需要自己手动进breed重新刷。</p>
+</li>
+</ol>
+<h3 id="进入breed方法"><a href="#进入breed方法" class="headerlink" title="进入breed方法"></a>进入breed方法</h3><p>路由WAN口的网线拔掉，电脑网线连接路由LAN口，电脑网卡设置为自动获取IP:<br>路由断电3秒—-按住复位键不要松手—-插入电源—-等待5秒松手—-浏览器输入192.168.1.1—-固件更新—-选择固件刷入。<br>breed作者原帖：<a href="http://www.right.com.cn/forum/thread-161906-1-1.html" target="_blank" rel="noopener">http://www.right.com.cn/forum/thread-161906-1-1.html</a><br>中文版PuTTy：<a href="https://github.com/larryli/PuTTY" target="_blank" rel="noopener">https://github.com/larryli/PuTTY</a></p>
+
+            </article>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%8E%A9%E6%9C%BA%E6%95%99%E7%A8%8B/">玩机教程</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/k2/">k2</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" target="_blank" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext row">
+                  <div class="post-prev col-6">
+                    
+                    
+                      <a href="/2017/01/22/QQ%20AR%E7%BA%A2%E5%8C%85%E8%BF%9B%E9%98%B6%E7%8E%A9%E6%B3%95(%E4%B8%80)/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QQ AR红包进阶玩法(一)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </div>
+                  <div class="post-next col-6">
+                    
+                    
+                      <a href="/2016/09/10/%E7%A0%B4%E8%A7%A3%E9%AB%98%E5%BE%B7SDK%E5%AE%9E%E7%8E%B0%E5%85%8Dkey/">
+                        <span class="hidden-mobile">破解高德SDK实现免key</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
+                
+  <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDY1NC83MjA5">
+    <script type="text/javascript">
+      function loadLivere() {
+        addScript('https://cdn-city.livere.com/js/embed.dist.js');
+      }
+      createObserver(loadLivere, 'lv-container');
+    </script>
+    <noscript>为正常使用来必力评论功能请允许 JavaScript 运行</noscript>
+  </div>
+
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+      <!-- cnzz Analytics Icon -->
+      <span id="cnzz_stat_icon_1258791095" style="display: none"></span>
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: 'article.markdown-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "斐讯k2刷不死Uboot和华硕固件教程&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?857ef9b38c7e9ea46c76ecbb86cbf6c8";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <!-- cnzz Analytics -->
+    <script defer src="//s4.cnzz.com/z_stat.php?id=1258791095&show=pic"
+            type="text/javascript"></script>
+  
+
+
+
+
+
+</body>
+</html>

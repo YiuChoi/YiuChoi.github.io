@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" type="image/png" href="/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="小木·年轮">
+  <meta name="author" content="蔡小木">
+  <meta name="keywords" content="">
+  <title>微阅 - 小木·年轮</title>
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_yg9cfy8wd6.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script  src="/js/utils.js" ></script>
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+
+<body>
+  <header style="height: 60vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>小木·年轮</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/releases/">
+                <i class="iconfont icon-archive-fill"></i>
+                发布
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-md">
+        <div class="py-5" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<div class="page-content">
+  <h2 id="微阅更新日志"><a href="#微阅更新日志" class="headerlink" title="微阅更新日志"></a>微阅更新日志</h2><h3 id="1-3-7"><a href="#1-3-7" class="headerlink" title="1.3.7"></a>1.3.7</h3><ol>
+<li>修复IT直接无法加载的bug(接口又变了)</li>
+</ol>
+<h3 id="1-3-6"><a href="#1-3-6" class="headerlink" title="1.3.6"></a>1.3.6</h3><ol>
+<li>修复IT直接无法加载的bug</li>
+</ol>
+<h3 id="1-3-5"><a href="#1-3-5" class="headerlink" title="1.3.5"></a>1.3.5</h3><ol>
+<li>修复视频全部解析失败的问题</li>
+<li>优化部分界面</li>
+</ol>
+<h3 id="1-3-0"><a href="#1-3-0" class="headerlink" title="1.3.0"></a>1.3.0</h3><ol>
+<li>增加夜间模式。</li>
+<li>刷新改为官方样式，加载改为自动加载。</li>
+<li>修改滑动返回样式。</li>
+<li>移除悬浮窗权限。</li>
+</ol>
+<h3 id="1-2-0"><a href="#1-2-0" class="headerlink" title="1.2.0"></a>1.2.0</h3><ol>
+<li>增加修改显示栏目的功能，自由选择自己想要显示的内容。</li>
+<li>修复bug，增强稳定性。<br><a href="http://caiyao.name/releases/microreader_1.2.0.apk">下载地址</a></li>
+</ol>
+<h3 id="1-1-1"><a href="#1-1-1" class="headerlink" title="1.1.1"></a>1.1.1</h3><ol>
+<li>更改代码架构，增强稳定性。</li>
+<li>添加使用浏览器打开微信文章和视频的选项，暂时解决部分用户白屏现象。<br><a href="http://caiyao.name/releases/microreader_1.1.1.apk">下载地址</a></li>
+</ol>
+<h3 id="1-1-0"><a href="#1-1-0" class="headerlink" title="1.1.0"></a>1.1.0</h3><ol>
+<li>修复IT之家快速返回崩溃，果壳图片超出屏幕等已知bug；</li>
+<li>增加已读功能，添加菜单项。</li>
+<li>修改字体大小、布局、图标等界面优化。</li>
+<li>修改视频推荐来源，增加视频预览图、分享。</li>
+<li>增加页面滑动返回，新闻正文快速返回顶部。</li>
+</ol>
+<p><a href="http://caiyao.name/releases/microreader_1.1.0.apk">下载地址</a></p>
+<h3 id="1-0-6"><a href="#1-0-6" class="headerlink" title="1.0.6"></a>1.0.6</h3><ol>
+<li>修复部分机型IT之家部分新闻崩溃的问题。</li>
+<li>添加网页加载进度条显示。</li>
+<li>修改新图标(旧图标临时拼凑的好嘛(⊙o⊙)！)。</li>
+<li>我还没准备好，它就上架了o(╯□╰)o，bug还一堆，更新也比较勤，大家见谅哈！</li>
+</ol>
+<p><a href="http://caiyao.name/releases/microreader_1.0.6.apk">下载地址</a></p>
+<h3 id="1-0-5"><a href="#1-0-5" class="headerlink" title="1.0.5"></a>1.0.5</h3><ol>
+<li>修复部分Android5.X机型崩溃问题。</li>
+<li>添加导航栏设置选项。</li>
+<li>彻底解决状态栏显示问题，可沉浸可半透明。</li>
+</ol>
+<p><a href="http://caiyao.name/releases/microreader_1.0.5.apk">下载地址</a></p>
+<h3 id="1-0-4"><a href="#1-0-4" class="headerlink" title="1.0.4"></a>1.0.4</h3><ol>
+<li>状态栏和侧边栏打架，使得图片没法好好地进入到状态栏，很头疼，目前是临时方案，待解决。酷市场解决的不错，有谁知道怎么做的，教教我%&gt;_&lt;%。</li>
+</ol>
+<p><a href="http://caiyao.name/releases/microreader_1.0.4.apk">下载地址</a></p>
+<h3 id="1-0-3"><a href="#1-0-3" class="headerlink" title="1.0.3"></a>1.0.3</h3><ol>
+<li>修复部分机型崩溃。</li>
+<li>修复主题获取失败的显示效果。</li>
+<li>修改升级策略。</li>
+</ol>
+<p><a href="http://caiyao.name/releases/microreader_1.0.3.apk">下载地址</a></p>
+
+</div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+      <!-- cnzz Analytics Icon -->
+      <span id="cnzz_stat_icon_1258791095" style="display: none"></span>
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
+<script  src="/js/main.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/lazyload.js" ></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "微阅&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <!-- Baidu Analytics -->
+    <script defer>
+      var _hmt = _hmt || [];
+      (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?857ef9b38c7e9ea46c76ecbb86cbf6c8";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <!-- cnzz Analytics -->
+    <script defer src="//s4.cnzz.com/z_stat.php?id=1258791095&show=pic"
+            type="text/javascript"></script>
+  
+
+
+
+
+
+</body>
+</html>
