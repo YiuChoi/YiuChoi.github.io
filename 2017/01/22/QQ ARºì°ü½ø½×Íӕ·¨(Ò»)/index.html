@@ -19,7 +19,7 @@
   <meta name="description" content="小木·年轮">
   <meta name="author" content="蔡小木">
   <meta name="keywords" content="">
-  <title>运动修改器之利用三星健康稳定修改支付宝 - 小木·年轮</title>
+  <title>QQ AR红包进阶玩法(一) - 小木·年轮</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -49,7 +49,7 @@
 
 
   <script  src="/js/utils.js" ></script>
-<meta name="generator" content="Hexo 5.2.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
@@ -130,8 +130,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2017-09-04 18:52">
-      2017年9月4日 晚上
+    <time datetime="2017-01-22 21:29">
+      2017年1月22日 晚上
     </time>
   </div>
 
@@ -141,7 +141,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      291 字
+      476 字
     </span>
   
 
@@ -151,7 +151,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      4
        分钟
     </span>
   
@@ -182,36 +182,35 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <p>支付宝的步数修改越来越难，这次我们来利用三星健康曲线修改支付宝，目前测试很稳定。</p>
-<a id="more"></a>
-<h3 id="9月13更新"><a href="#9月13更新" class="headerlink" title="9月13更新"></a>9月13更新</h3><pre><code>如果伪装失败可以使用应用变量伪装试试。</code></pre>
+              <p>最近支付宝QQ红包大战又开始了，前两天支付宝集福占据风头，这两天又换QQ抢风头了，相比支付宝集福还不知道能分几毛，QQ可是实打实的现金红包，每天每个QQ可领取一次8-188的现金红包，比支付宝爽快多了，不过，毕竟是AR红包，要去指定的地点领取，那么作为技术宅，怎么能任人摆布╭(╯^╰)╮。</p>
+<span id="more"></span>
+
 <h3 id="需要的前提条件"><a href="#需要的前提条件" class="headerlink" title="需要的前提条件"></a>需要的前提条件</h3><ul>
 <li>Android手机</li>
 <li>手机必须Root</li>
-<li>手机必须Xposed框架</li>
+<li>手机最好安装Xposed框架，没有也能玩，不过会有限制</li>
 </ul>
-<h3 id="修改步骤"><a href="#修改步骤" class="headerlink" title="修改步骤"></a>修改步骤</h3><ol>
-<li>去应用市场下载三星健康，并安装运行：</li>
+<p><strong>以上条件不符合请关闭本页，先去满足以上条件</strong></p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ol>
+<li>大红包的位置</li>
 </ol>
-<p><img src="http://ww1.sinaimg.cn/mw690/006VAonPgy1fj7ijfn5oqj31401z4dkl.jpg" srcset="/img/loading.gif"></p>
+<p><img src="http://wx2.sinaimg.cn/mw690/723b2af4gy1fbzr1mpzlgj209o0p741d.jpg" srcset="/img/loading.gif"></p>
 <ol start="2">
-<li><p>手机安装最新版的运动修改器（2.0.9以上），并在xposed里面勾选，然后重启</p>
-<p> 下载地址：<a href="http://caiyao.name/releases">http://caiyao.name/releases</a></p>
-</li>
-<li><p>打开运动修改器，点击支付宝，然后点击一键伪装成三星S8（伪装成三星手机，支付宝才回同步三星健康的数据），需要root权限，注意，这一步会清空支付宝的数据：</p>
-</li>
+<li>安装一个伪装手机位置的软件，这里我们使用天下任我行</li>
 </ol>
-<p><img src="http://ww1.sinaimg.cn/mw690/006VAonPgy1fj7ioq4j8bj31401z4jx4.jpg" srcset="/img/loading.gif"></p>
-<p><img src="http://ww1.sinaimg.cn/mw690/006VAonPgy1fj7ird7hytj31401z4ah1.jpg" srcset="/img/loading.gif"></p>
-<ol start="4">
-<li><p>打开支付宝，登录，进入运动界面，点击右上角设置：<br><img src="http://ww1.sinaimg.cn/mw690/006VAonPgy1fj7iqhqo0pj31401z4arc.jpg" srcset="/img/loading.gif"></p>
-</li>
-<li><p>然后点击运动数据记录，打开三星健康，并允许读取三星健康数据：<br><img src="http://ww1.sinaimg.cn/mw690/006VAonPgy1fj7isze23ij31401z4gp9.jpg" srcset="/img/loading.gif"></p>
-</li>
+<p><a href="http://caiyao.name/releases/fake.apk">点击下载</a></p>
+<p>这个软件是收费的，不过非常好用，可以免费试用5小时，如果你有xposed就有下面两种方式破解：</p>
+<ul>
+<li>禁用软件SD卡权限，使用应用产量等修改手机信息，清除软件数据即可再次试用5小时。</li>
+<li>下载对话框取消Xposed模块，出现试用到期对话框，点击返回即可继续使用。</li>
+</ul>
+<p>以上方法任选一个。</p>
+<p>如果你没有xposed，可以选择禁用SD卡权限后，手动修改手机型号，清除任我行数据，获得再次试用。</p>
+<h3 id="去抢大红包"><a href="#去抢大红包" class="headerlink" title="去抢大红包"></a>去抢大红包</h3><ol>
+<li>在任我行软件里面搜索上面任意一个有大红包的地方，选定位置开始模拟，在任我行设置里面的隐藏自己选项中对QQ隐藏。</li>
+<li>结束QQ进程，重新打开QQ就会发现已经飞到了大红包的位置，等到12点，大红包出现即可领取，记住是金色的红包哟。</li>
 </ol>
-<p><img src="http://ww1.sinaimg.cn/mw690/006VAonPgy1fj7itnhs4kj31401z4n27.jpg" srcset="/img/loading.gif"></p>
-<h3 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h3><p>完成以上安装步骤后，返回重新进入支付宝运动界面，就会发现三星健康的步数已经同步过来啦<br><img src="http://ww1.sinaimg.cn/mw690/006VAonPgy1fj7jz7pntzj31401z4n0a.jpg" srcset="/img/loading.gif"></p>
-<p><img src="http://ww1.sinaimg.cn/mw690/006VAonPgy1fj7jzt7gr4j31401z4kgq.jpg" srcset="/img/loading.gif"></p>
+<p><a target="_blank" rel="noopener" href="http://shang.qq.com/wpa/qunwpa?idkey=cb1680a5052a631a7ce40ca3063530d016c9fb2664eb4a74465b0398b9e696d9">如果你有更多问题可以QQ群290873461讨论</a></p>
 
             </article>
             <hr>
@@ -229,7 +228,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E8%BF%90%E5%8A%A8%E4%BF%AE%E6%94%B9/">运动修改</a>
+                      <a class="hover-with-bg" href="/tags/QQ-%E7%BA%A2%E5%8C%85/">QQ 红包</a>
                     
                   </div>
                 
@@ -242,12 +241,18 @@
                   <div class="post-prev col-6">
                     
                     
+                      <a href="/2017/01/22/QQ%20AR%C2%BA%C3%AC%C2%B0%C3%BC%C2%BD%C3%B8%C2%BD%C3%97%C3%8D%D3%95%CE%87%C2%A8(%C2%B6%C3%BE)/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QQ AR红包进阶玩法(二)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2017/01/22/QQ%20AR%C2%BAi%CC%80%C2%B0u%CC%88%C2%BD%C3%B8%C2%BD%C3%97I%CC%81%C3%A6%C2%B7%C2%A8(%C2%B6%C3%BE)/">
-                        <span class="hidden-mobile">QQ AR红包进阶玩法(二)</span>
+                      <a href="/2016/12/16/%C3%AC%C2%B3%C3%91%C2%B6k2%C3%8B%C2%A2%C2%B2%C2%BB%C3%8B%C3%80Uboot%C2%BA%C3%8D%C2%BB%C2%AA%C3%8B%C2%B6%C2%B9%C3%8C%C2%BC%C3%BE%C2%BD%C3%8C%C2%B3%C3%8C/">
+                        <span class="hidden-mobile">斐讯k2刷不死Uboot和华硕固件教程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -389,7 +394,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "运动修改器之利用三星健康稳定修改支付宝&nbsp;",
+        "QQ AR红包进阶玩法(一)&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

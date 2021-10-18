@@ -19,7 +19,7 @@
   <meta name="description" content="小木·年轮">
   <meta name="author" content="蔡小木">
   <meta name="keywords" content="">
-  <title>破解高德SDK实现免key - 小木·年轮</title>
+  <title>先导篇 - 小木·年轮</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -49,7 +49,7 @@
 
 
   <script  src="/js/utils.js" ></script>
-<meta name="generator" content="Hexo 5.2.0"></head>
+<meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
@@ -130,8 +130,8 @@
               
   <div class="mt-3 post-meta">
     <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-    <time datetime="2016-09-10 11:29">
-      2016年9月10日 上午
+    <time datetime="2016-01-01 12:01">
+      2016年1月1日 中午
     </time>
   </div>
 
@@ -141,7 +141,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.1k 字
+      1.2k 字
     </span>
   
 
@@ -151,7 +151,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      14
+      12
        分钟
     </span>
   
@@ -182,93 +182,27 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>作为一个 Android 开发者，使用定位 SDK 越来越频繁，但是基本上所有的定位 SDK 都需要使用时申请 key ，而且这些 key 又根据签名和包名生成，作为程序员，怎么能忍受这么麻烦的事情，于是就着手想办法解决。至于为什么是高德呢，只是因为不喜欢百度。</p>
-<a id="more"></a>
-
-<h2 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h2><ul>
-<li>高德定位SDK最新版 AMap_Location_V2.9.0_20160906.jar</li>
-<li>Android Studio</li>
-<li>Java Decompiler</li>
-</ul>
-<h2 id="分析过程"><a href="#分析过程" class="headerlink" title="分析过程"></a>分析过程</h2><p>高德的定位 SDK 在申请 key 的时候需要的信息包名和 SHA1 码，然后会给我们一个 key ，因此在校验的时候肯定也是这三个条件有：</p>
-<ul>
-<li>包名</li>
-<li>编译key的SHA1码</li>
-<li>申请得到的key</li>
-</ul>
-<p>那么如果我们找到高德获取这些信息的入口，申请一个key，然后将这些信息写死在代码中试试能不能做到呢？</p>
-<p>接下来我们就来尝试一下</p>
-<p>高德的定位 SDK 是一个 jar 包，而jar包是很容易反编译的，首先我们使用 Java Decompiler 来看一下代码结构</p>
-<p><img src="http://ww1.sinaimg.cn/large/723b2af4gw1f7orajggdxj20am0e1taq.jpg" srcset="/img/loading.gif"></p>
-<p>看到了什么– APSService ,就是高德让我们在 AndroidManifest.xml 中声明的那个 Service ,说明这个就是高德定位的入口，来看看里面的内容</p>
-<p><img src="http://ww4.sinaimg.cn/large/723b2af4gw1f7orax444dj20w90jxgpl.jpg" srcset="/img/loading.gif"></p>
-<p>做过动态加载的人肯定一眼就看出来了，这是一个代理 Service ，真正运行的是实现了 APSServiceBase 的 Service ，那就需要去寻找实现了 APSServiceBase 的类,反正类不多就一个一个看，就找了到 b.class</p>
-<p><img src="http://ww2.sinaimg.cn/large/723b2af4gw1f7orb6cqgmj20nt0kjwlr.jpg" srcset="/img/loading.gif"></p>
-<p>在 onBind 方法里面我们看到了关键信息</p>
-<p><img src="http://ww4.sinaimg.cn/large/723b2af4gw1f7orbdv1guj20ef0gutcg.jpg" srcset="/img/loading.gif"></p>
-<p>这个 onBind 是代理 APSService 的 onBind ，那我们就在 APSService 的 onBind 方法里面打印这些参数，看看分别都是什么,那怎么修改 jar 包呢，其实非常简单， jar 包就是一个 zip 格式的压缩文件，我们只需要解压替换，然后重新压缩就可以了。</p>
-<h2 id="修改jar"><a href="#修改jar" class="headerlink" title="修改jar"></a>修改jar</h2><p>使用 Android Studio 新建一个 Android Library 的 Module ，包名与  jar 包要修改的类包名相同,新建一个类，与要修改的类名相同</p>
-<p><img src="http://ww2.sinaimg.cn/large/723b2af4gw1f7orblt8sdj20b90bvgms.jpg" srcset="/img/loading.gif"></p>
-<p>复制反编译出来的 APSService 的内容到我们新建的类中，同时将 SDK 的 jar 包作为这个 Module 的依赖包，保证这个 Module 可以正常编译。其中 onBInd 方法我们修改为以下内容，其中修改后的内容为我们已经在高德官网申请过得 key 信息。</p>
-<ul>
-<li>注意：这里 sha1AndPackage 中 SHA1 码与包名中间的冒号为中文冒号，高德真是费尽心机…</li>
-</ul>
-<pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> IBinder <span class="hljs-title">onBind</span><span class="hljs-params">(Intent paramIntent)</span> </span>&#123;
-    <span class="hljs-keyword">try</span> &#123;
-        String str1 = paramIntent.getStringExtra(<span class="hljs-string">&quot;apiKey&quot;</span>);
-        String str2 = paramIntent.getStringExtra(<span class="hljs-string">&quot;packageName&quot;</span>);
-        String str3 = paramIntent.getStringExtra(<span class="hljs-string">&quot;sha1AndPackage&quot;</span>);
-        String str4 = paramIntent.getStringExtra(<span class="hljs-string">&quot;as&quot;</span>);
-        Log.i(<span class="hljs-string">&quot;修改前数据&quot;</span>, <span class="hljs-string">&quot;apiKey:&quot;</span> + str1 + <span class="hljs-string">&quot;\npackageName:&quot;</span> + str2 + <span class="hljs-string">&quot;\nsha1AndPackage:&quot;</span> + str3 + <span class="hljs-string">&quot;\nas:&quot;</span> + str4);
-        paramIntent.putExtra(<span class="hljs-string">&quot;apiKey&quot;</span>, <span class="hljs-string">&quot;93036c13932aba6eeaee2a02656f14d7&quot;</span>);
-        paramIntent.putExtra(<span class="hljs-string">&quot;packageName&quot;</span>, <span class="hljs-string">&quot;com.lge.clock&quot;</span>);
-        paramIntent.putExtra(<span class="hljs-string">&quot;sha1AndPackage&quot;</span>, <span class="hljs-string">&quot;FA:AB:F5:02:B2:17:AC:D3:DA:46:38:ED:FF:E3:0C:A3:E4:67:0A:50:com.lge.clock&quot;</span>);
-        str1 = paramIntent.getStringExtra(<span class="hljs-string">&quot;apiKey&quot;</span>);
-        str2 = paramIntent.getStringExtra(<span class="hljs-string">&quot;packageName&quot;</span>);
-        str3 = paramIntent.getStringExtra(<span class="hljs-string">&quot;sha1AndPackage&quot;</span>);
-        str4 = paramIntent.getStringExtra(<span class="hljs-string">&quot;as&quot;</span>);
-        Log.i(<span class="hljs-string">&quot;修改后数据&quot;</span>, <span class="hljs-string">&quot;apiKey:&quot;</span> + str1 + <span class="hljs-string">&quot;\npackageName:&quot;</span> + str2 + <span class="hljs-string">&quot;\nsha1AndPackage:&quot;</span> + str3 + <span class="hljs-string">&quot;\nas:&quot;</span> + str4);
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.a.onBind(paramIntent);
-    &#125; <span class="hljs-keyword">catch</span> (Throwable localThrowable) &#123;
-        c.a(localThrowable, <span class="hljs-string">&quot;APSService&quot;</span>, <span class="hljs-string">&quot;onBind&quot;</span>);
-    &#125;
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
-&#125;</code></pre>
-
-<p>接下来只需要打包这个 Module 为 jar 包，然后提取出这个类的 class 文件，替换高德 SDK 的 jar 包中对应的 class 文件即可。</p>
-<p>Android Studio 如何打包 jar 呢？</p>
-<p>我们在这个修改的用来修改的 Module 的 build.gradle 中添加以下代码</p>
-<pre><code class="hljs Groovy">task makeJar(<span class="hljs-attr">type:</span> Copy) &#123;
-
-    delete <span class="hljs-string">&#x27;build/libs/lib.jar&#x27;</span>
-
-    from(<span class="hljs-string">&#x27;build/intermediates/bundles/release/&#x27;</span>)
-
-    into(<span class="hljs-string">&#x27;build/libs/&#x27;</span>)
-
-    include(<span class="hljs-string">&#x27;classes.jar&#x27;</span>)
-
-    rename (<span class="hljs-string">&#x27;classes.jar&#x27;</span>, <span class="hljs-string">&#x27;lib.jar&#x27;</span>)
-
-&#125;
-
-makeJar.dependsOn(build)</code></pre>
-<p>在工程目录下执行 </p>
-<pre><code class="hljs ebnf"><span class="hljs-attribute">gradlew makeJar</span></code></pre>
-<p><img src="http://ww4.sinaimg.cn/large/723b2af4gw1f7orvm9vo2j20s80a9769.jpg" srcset="/img/loading.gif"></p>
-<p>即可得到 jar 文件</p>
-<p><img src="http://ww2.sinaimg.cn/large/723b2af4gw1f7orx6ytocj20ak0efjsf.jpg" srcset="/img/loading.gif"></p>
-<p>解压 lib.jar 和 高德 SDK 的 jar，使用 lib.jar 中的 APSService.class 替换高德 SDK 中的 APSService.class ,然后将这个文件夹重新<strong>压缩成 zip格式</strong> ,然后修改扩展名为 .jar 即可。</p>
-<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>使用修改后的 SDK jar 包替换原来的 jar 包进行定位测试，不要忘了在 AndroidManifest.xml 也加上申请好的 key 。</p>
-<p>测试结果为可以正常定位，包名和签名可以随意换咯，再也不用麻烦的每次申请 key 啦！</p>
-<h2 id="国际惯例"><a href="#国际惯例" class="headerlink" title="国际惯例"></a>国际惯例</h2><p>奉上源代码</p>
-<pre><code class="hljs url">https:&#x2F;&#x2F;github.com&#x2F;YiuChoi&#x2F;CrackAmap</code></pre>
+              <p>&#160; &#160; &#160;&#160;Happy New  Year!感觉元旦用英语说才更有感觉，春节用新年快乐更合适。2015对我来说是是人生中非常重要的一年，这一年离开学校开始工作，也是我经过三年低迷重拾斗志的第一年。<br>&#160; &#160; &#160;&#160;2014年暑假我才决定去做一名程序员，在这之前，大学前三年我完全找不到人生的方向，真的是在混日子，做的有意义的事屈指可数。做了两年微软校园大使，虽说没什么成绩，也没有和其他校园大使交上朋友，但是可以感受到大公司的那种工作氛围和办事效率，对我影响颇大。交了几个不错的朋友，没有他们，我无法想象我大学的后两年会怎么过，也不知道我的大学会以什么方式结束。也曾经去教授实验室呆过一两个月，学IOS软件开发，最后不了了之，但是这件事让我对移动软件开发有了一个初步的印象。谈恋爱，这个话题本来想略过的，不过还是觉得躲不过去。为啥想略过呢，因为对于情商为负数的我来说，这完全是稀里糊涂的，连我自己都弄不明白发生了什么，完全没法说。简单的总结三句话，喜欢的水中之月，不喜欢的昙花一现，互相喜欢的曲折离奇。<br>&#160; &#160; &#160;&#160;2015年，取毕业证，拿驾照，去公司报道，三件事情我是用连续三天完成的。这三件事也基本概括了这一年的大体路线。一不小心就毕业了，我还没来得及学完我想学习的东西，我要是早一年找到人生的方向，我也不会觉得毕业这么仓促。没办法，事情已经来了，只能硬着头皮上。不管你愿不愿意，它都会发生。于是我就被毕业了。<br>&#160; &#160; &#160;&#160;考驾照并没有想象的那么难，感觉学起来还是蛮轻松的，特别是当有几个小伙伴一起学车的时候，感觉就跟玩似得。教练人都很好，特别是吴教练，很有耐心。<br>&#160; &#160; &#160;&#160;对于只有不到一年编程经验，只有半年Android开发经验的我来说，找工作还是一件有点难度的事情，不像有的人，大学学了好几年了，BAT随便进。曾经也怀疑是不是不应该非要找Android开发的工作，但是对编程和Android的喜爱，让我坚持了下来。我很喜欢现在的这份工作，做起来很有热情，这半年，我在不断的学习，提高自己的技能，对Android开发有了一个较为全面的认识，差不多应该有Android初级工程师的水平了。  同时也入门了Python这门强大了语言，学习一门强大的脚本语言对于程序开发效率的提示是不言而喻的。不得不说，不断地学习新东西真是一个享受的过程。<br>&#160; &#160; &#160;&#160;每天下班了可以和室友一起自己做晚餐吃。吃完晚餐没事可以去打打篮球。当然，周末要是能和喜欢的人一起出去玩就更完美了，只可惜这一段曲折离奇的感情，难以掌控，难以如愿。<br>&#160; &#160; &#160;&#160;整个2015年还是挺不错的，过得很充实，感觉自己每一天都在进步，每一天都很有意义。<br>&#160; &#160; &#160;&#160;2016年开始了，在这个新的起点上，当然要取的新的进步。工作上，继续磨练学习Android开发，达到中级工程师的水平。生活上，要提高生活质量，开始关注自己的身体，开始学习理财。感情这件事情并不是靠努力就能有结果的，希望自己能多一些感性，少一些理性吧。总之，人生之路多坎坷，不忘初心，坚强努力。<br>&#160; &#160; &#160;&#160;<strong>结束语</strong>：其实早在去年就想搭建一个个人博客了，这个域名也是那个时候申请的，只是后来搭了拆，拆了搭，反复了很多次。这次终于是下定决心了，以后要抽出一点时间认真来维护这个博客，以交流技术为主，也会有一些生活记录吧。要是能顺便提高一下自己的文字能力，那也是极好的。</p>
 
             </article>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/">生活记录</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%B9%B4%E8%BD%AE/">年轮</a>
+                    
+                  </div>
                 
               </div>
               
@@ -279,21 +213,15 @@ makeJar.dependsOn(build)</code></pre>
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2016/12/16/i%CC%80%C2%B3N%CC%83%C2%B6k2E%CC%88%C2%A2%C2%B2%C2%BBE%CC%88A%CC%80Uboot%C2%BAI%CC%81%C2%BB%C2%AAE%CC%88%C2%B6%C2%B9I%CC%80%C2%BC%C3%BE%C2%BDI%CC%80%C2%B3I%CC%80/">
+                      <a href="/2016/01/13/%C3%8A%C3%96%C2%BB%C3%BAQQ%C3%81%C3%84%C3%8C%C3%AC%C2%BC%C3%87%C3%82%C2%BC%D3%94%D3%94%C2%BD%C3%A2/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">斐讯k2刷不死Uboot和华硕固件教程</span>
+                        <span class="hidden-mobile">手机QQ聊天记录破解</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </div>
                   <div class="post-next col-6">
                     
-                    
-                      <a href="/2016/08/25/XposedI%CC%82E%CC%82I%CC%80a%CC%82%C2%B1E%CC%82%C2%BCC%CC%A7/">
-                        <span class="hidden-mobile">Xposed问题笔记</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
                     
                   </div>
                 </div>
@@ -432,7 +360,7 @@ makeJar.dependsOn(build)</code></pre>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "破解高德SDK实现免key&nbsp;",
+        "先导篇&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
