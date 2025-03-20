@@ -1,1 +1,1 @@
-{"versionCode":250,"versionName":"2.5.0","downloadUrl":"https://caiyao.name/releases/sporteditor_2.5.0.apk","releaseNote":"1. 删除拼多多免拼（已失效很久了）\r\n2. 新增zepp life、欢太健康步数修改\r\n3. 优化代码，优化hook机制\r\n4. 如果失效请重启手机\r\n5. 修复钉钉跳转到最近使用界面的问题\r\n6. 步数上限设置无效，请使用定时关闭功能"}
+{"versionCode":251,"versionName":"2.5.1","downloadUrl":"https://caiyao.name/releases/sporteditor_2.5.1.apk","releaseNote":"1. 适配Android 15\r\n 2. 优化代码，优化hook机制\r\n3. 如果失效请重启手机\r\n4. 步数上限设置无效，请使用定时关闭功能"}
